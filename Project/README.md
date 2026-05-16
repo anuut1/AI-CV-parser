@@ -15,6 +15,14 @@ Semantic Similarity Score: Measures meaning-level similarity between resume and 
 Project Relevance Score: Checks whether student/fresher projects match the role.
 Experience Relevance Score: Compares required experience in the JD with detected resume experience.
 
+Tech Stack:
+Layer	Technology
+Frontend	React, Vite, CSS
+Backend	FastAPI, Python
+AI/NLP	Sentence Transformers, Scikit-learn
+PDF Processing	pypdf
+API Format	Multipart form upload, JSON response
+
 Open a terminal in the project root:
 
 cd backend
