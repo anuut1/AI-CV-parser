@@ -1,0 +1,5 @@
+Candidate: Asha Sharma
+
+Python developer with experience in FastAPI, React, SQL, Git, pandas, data analysis, and machine learning.
+Built REST API services and dashboards. Strong communication and problem solving skills.
+

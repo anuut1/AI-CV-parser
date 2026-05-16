@@ -1,0 +1,12 @@
+Candidate: Riya Mehta
+
+Skills
+Python, NLP, machine learning, pandas, data analysis
+
+Projects
+Built sentiment analysis model for movie reviews using natural language processing and Python.
+Created text classification pipeline with scikit-learn.
+
+Experience
+Internship in ML for 6 months.
+

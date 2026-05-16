@@ -1,0 +1,3 @@
+We are hiring a Python developer with FastAPI, React, SQL, Git, and machine learning experience.
+The candidate should have strong communication and problem solving skills.
+
