@@ -1,0 +1,13 @@
+jd_id,resume_id,relevance
+jd_01_backend,resume_01_senior_backend.txt,3
+jd_01_backend,resume_02_junior_backend.txt,2
+jd_01_backend,resume_03_senior_ml.txt,1
+jd_01_backend,resume_04_fresher_nlp.txt,1
+jd_01_backend,resume_05_frontend.txt,1
+jd_01_backend,resume_06_unrelated.txt,0
+jd_02_ml,resume_03_senior_ml.txt,3
+jd_02_ml,resume_04_fresher_nlp.txt,2
+jd_02_ml,resume_01_senior_backend.txt,1
+jd_02_ml,resume_02_junior_backend.txt,0
+jd_02_ml,resume_05_frontend.txt,0
+jd_02_ml,resume_06_unrelated.txt,0

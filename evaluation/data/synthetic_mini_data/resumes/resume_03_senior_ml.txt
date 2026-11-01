@@ -1,0 +1,16 @@
+Candidate: Dr. Priya Nair
+
+Summary
+Machine Learning Engineer with 3 years of experience developing deep learning and natural language processing models in PyTorch.
+
+Technical Skills
+Python, machine learning, deep learning, natural language processing, PyTorch, scikit-learn, pandas, numpy, SQL, Git.
+
+Experience
+ML Scientist (3 years of experience).
+Designed and fine-tuned transformer language models for text classification and semantic retrieval.
+Built production machine learning pipelines using PyTorch and pandas.
+
+Projects
+Clinical NLP Semantic Search
+Developed a semantic search engine using BERT transformers and scikit-learn for biomedical records.

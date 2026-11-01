@@ -1,0 +1,4 @@
+Machine Learning Engineer (NLP & Data).
+Requirements: Python, machine learning, natural language processing, deep learning, PyTorch, scikit-learn, pandas.
+Experience: 2 years experience preferred, but candidates with strong NLP projects are encouraged to apply.
+Key tasks: Building transformer-based text classification and semantic search models.

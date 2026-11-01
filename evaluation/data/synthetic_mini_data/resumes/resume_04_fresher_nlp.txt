@@ -1,0 +1,17 @@
+Candidate: Riya Mehta
+
+Summary
+Recent Computer Science graduate with strong academic background and project portfolio in Natural Language Processing and Machine Learning.
+
+Technical Skills
+Python, machine learning, natural language processing, scikit-learn, pandas, PyTorch, Git.
+
+Projects
+Sentiment Analysis & Text Classification
+Built a sentiment analysis model for customer reviews using natural language processing and Python.
+Created an end-to-end text classification pipeline with scikit-learn and evaluated transformer embeddings.
+Trained custom NLP models for document summarization.
+
+Experience
+Internship in ML for 6 months.
+Worked on data analysis and preprocessing pipelines with pandas and Python.

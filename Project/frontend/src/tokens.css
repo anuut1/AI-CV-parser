@@ -1,0 +1,207 @@
+:root {
+  /* =========================================================================
+     Color Tokens — Light Mode (Default)
+     Confident Cobalt/Slate aesthetic with clean neutrals
+     ========================================================================= */
+  --bg-app: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-surface-muted: #f1f5f9;
+  --bg-surface-subtle: #f8fafc;
+  --bg-surface-hover: #f1f5f9;
+
+  --border-subtle: #e2e8f0;
+  --border-default: #cbd5e1;
+  --border-focus: #2563eb;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-subtle: #94a3b8;
+  --text-inverse: #ffffff;
+
+  /* Primary Accent: Confident Enterprise Cobalt */
+  --accent-primary: #2563eb;
+  --accent-primary-hover: #1d4ed8;
+  --accent-primary-active: #1e40af;
+  --accent-subtle: #eff6ff;
+  --accent-border: #bfdbfe;
+  --accent-text: #1d4ed8;
+
+  /* Semantic Feedback Bands */
+  /* Good Match (Green / Emerald) */
+  --badge-good-bg: #ecfdf5;
+  --badge-good-border: #a7f3d0;
+  --badge-good-text: #065f46;
+  --gauge-good: #10b981;
+
+  /* Manual Review (Amber / Gold) */
+  --badge-review-bg: #fffbeb;
+  --badge-review-border: #fde68a;
+  --badge-review-text: #92400e;
+  --gauge-review: #f59e0b;
+
+  /* Weak Match (Rose / Red) */
+  --badge-weak-bg: #fff1f2;
+  --badge-weak-border: #fecdd3;
+  --badge-weak-text: #9f1239;
+  --gauge-weak: #f43f5e;
+
+  /* Neutral badge */
+  --badge-neutral-bg: #f1f5f9;
+  --badge-neutral-border: #e2e8f0;
+  --badge-neutral-text: #334155;
+
+  /* Pillar colors for score breakdown */
+  --pillar-skill: #2563eb;
+  --pillar-semantic: #0d9488;
+  --pillar-project: #8b5cf6;
+  --pillar-experience: #f59e0b;
+
+  /* Shadows (Subtle, crisp enterprise style) */
+  --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.08), 0 1px 2px -1px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.03);
+
+  /* Typography Scale */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.84375rem;  /* 13.5px */
+  --text-base: 0.9375rem; /* 15px */
+  --text-md: 1.0625rem;   /* 17px */
+  --text-lg: 1.25rem;     /* 20px */
+  --text-xl: 1.5rem;      /* 24px */
+  --text-2xl: 1.875rem;   /* 30px */
+
+  /* 8px Spacing Scale */
+  --space-0-5: 4px;
+  --space-1: 8px;
+  --space-1-5: 12px;
+  --space-2: 16px;
+  --space-2-5: 20px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-8: 64px;
+
+  /* Border Radii (12-16px for cards per design direction) */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-full: 9999px;
+
+  /* Transition timings */
+  --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* =========================================================================
+   Dark Mode Tokens (via manual data-theme="dark" or system media query)
+   ========================================================================= */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg-app: #090d16;
+    --bg-surface: #111827;
+    --bg-surface-elevated: #162032;
+    --bg-surface-muted: #1e293b;
+    --bg-surface-subtle: #0f172a;
+    --bg-surface-hover: #1e293b;
+
+    --border-subtle: #1e293b;
+    --border-default: #334155;
+    --border-focus: #3b82f6;
+
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --text-subtle: #64748b;
+    --text-inverse: #0f172a;
+
+    --accent-primary: #3b82f6;
+    --accent-primary-hover: #60a5fa;
+    --accent-primary-active: #2563eb;
+    --accent-subtle: rgba(59, 130, 246, 0.12);
+    --accent-border: rgba(59, 130, 246, 0.3);
+    --accent-text: #93c5fd;
+
+    /* Semantic Feedback Bands - Dark Mode */
+    --badge-good-bg: rgba(16, 185, 129, 0.14);
+    --badge-good-border: rgba(16, 185, 129, 0.3);
+    --badge-good-text: #6ee7b7;
+    --gauge-good: #10b981;
+
+    --badge-review-bg: rgba(245, 158, 11, 0.14);
+    --badge-review-border: rgba(245, 158, 11, 0.3);
+    --badge-review-text: #fcd34d;
+    --gauge-review: #f59e0b;
+
+    --badge-weak-bg: rgba(244, 63, 94, 0.14);
+    --badge-weak-border: rgba(244, 63, 94, 0.3);
+    --badge-weak-text: #fda4af;
+    --gauge-weak: #f43f5e;
+
+    --badge-neutral-bg: #1e293b;
+    --badge-neutral-border: #334155;
+    --badge-neutral-text: #cbd5e1;
+
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg-app: #090d16;
+  --bg-surface: #111827;
+  --bg-surface-elevated: #162032;
+  --bg-surface-muted: #1e293b;
+  --bg-surface-subtle: #0f172a;
+  --bg-surface-hover: #1e293b;
+
+  --border-subtle: #1e293b;
+  --border-default: #334155;
+  --border-focus: #3b82f6;
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-subtle: #64748b;
+  --text-inverse: #0f172a;
+
+  --accent-primary: #3b82f6;
+  --accent-primary-hover: #60a5fa;
+  --accent-primary-active: #2563eb;
+  --accent-subtle: rgba(59, 130, 246, 0.12);
+  --accent-border: rgba(59, 130, 246, 0.3);
+  --accent-text: #93c5fd;
+
+  --badge-good-bg: rgba(16, 185, 129, 0.14);
+  --badge-good-border: rgba(16, 185, 129, 0.3);
+  --badge-good-text: #6ee7b7;
+  --gauge-good: #10b981;
+
+  --badge-review-bg: rgba(245, 158, 11, 0.14);
+  --badge-review-border: rgba(245, 158, 11, 0.3);
+  --badge-review-text: #fcd34d;
+  --gauge-review: #f59e0b;
+
+  --badge-weak-bg: rgba(244, 63, 94, 0.14);
+  --badge-weak-border: rgba(244, 63, 94, 0.3);
+  --badge-weak-text: #fda4af;
+  --gauge-weak: #f43f5e;
+
+  --badge-neutral-bg: #1e293b;
+  --badge-neutral-border: #334155;
+  --badge-neutral-text: #cbd5e1;
+
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px -1px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -2px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -4px rgba(0, 0, 0, 0.4);
+}

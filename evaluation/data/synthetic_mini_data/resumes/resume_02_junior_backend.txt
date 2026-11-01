@@ -1,0 +1,15 @@
+Candidate: Rohan Gupta
+
+Summary
+Junior Backend Engineer with 1 year of experience in Python and SQL backend development.
+
+Technical Skills
+Python, FastAPI, SQL, MySQL, Git, REST API.
+
+Experience
+Junior Developer (1 year of experience).
+Implemented RESTful APIs and database schemas using Python and MySQL.
+
+Projects
+Task Manager API
+Built a collaborative task manager with FastAPI and SQL database.

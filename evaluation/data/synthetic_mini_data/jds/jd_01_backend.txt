@@ -1,0 +1,4 @@
+Backend Engineer (Python / FastAPI).
+Requirements: Python, FastAPI, SQL, PostgreSQL, Docker, Git.
+Experience required: 3 years of experience building REST APIs and microservices.
+Strong problem solving and communication skills.

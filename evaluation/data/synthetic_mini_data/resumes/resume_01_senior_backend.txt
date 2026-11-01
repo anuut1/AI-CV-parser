@@ -1,0 +1,16 @@
+Candidate: Aarav Patel
+
+Summary
+Senior Backend Developer with 4 years of experience architecting backend systems with Python, FastAPI, PostgreSQL, and Docker.
+
+Technical Skills
+Python, FastAPI, SQL, PostgreSQL, Docker, Git, REST API, microservices, problem solving, communication.
+
+Experience
+Senior Software Engineer at CloudTech (3 years of experience).
+Developed high-throughput REST APIs and microservice architecture using FastAPI and PostgreSQL.
+Deployed services with Docker and managed continuous deployment workflows with Git.
+
+Projects
+Microservice E-Commerce Gateway
+Built a scalable order processing gateway with FastAPI, Redis, and PostgreSQL handling 5000 req/sec.

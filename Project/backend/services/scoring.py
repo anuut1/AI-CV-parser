@@ -91,6 +91,59 @@ def calculate_final_score(
     )
 
 
+def compute_component_scores(
+    resume_text: str,
+    job_description: str,
+    jd_skills: list[str] | None = None,
+    resume_skills: list[str] | None = None,
+) -> dict:
+    """
+    Computes component scores (skill, semantic, project, experience) and the final score
+    for a (resume_text, job_description) pair without going through HTTP.
+    """
+    from services.skills import extract_jd_skills, extract_resume_skills
+
+    if jd_skills is None:
+        jd_skills = extract_jd_skills(job_description)
+    if resume_skills is None:
+        resume_skills = extract_resume_skills(resume_text)
+
+    matched_skills = sorted(set(resume_skills).intersection(jd_skills))
+    missing_skills = sorted(set(jd_skills).difference(resume_skills))
+    skill_score = calculate_skill_score(resume_skills, jd_skills)
+    semantic_score = calculate_semantic_score(resume_text, job_description)
+    project_analysis = analyze_project_relevance(
+        resume_text,
+        job_description,
+        jd_skills,
+    )
+    experience_analysis = analyze_experience_relevance(resume_text, job_description)
+    final_score = calculate_final_score(
+        skill_score=skill_score,
+        semantic_score=semantic_score,
+        project_score=project_analysis["score"],
+        experience_score=experience_analysis["score"],
+    )
+
+    return {
+        "skill": skill_score,
+        "semantic": semantic_score,
+        "project": project_analysis["score"],
+        "experience": experience_analysis["score"],
+        "final_score": final_score,
+        "skill_score": skill_score,
+        "semantic_score": semantic_score,
+        "project_score": project_analysis["score"],
+        "experience_score": experience_analysis["score"],
+        "matched_skills": matched_skills,
+        "missing_skills": missing_skills,
+        "resume_skills": resume_skills,
+        "jd_skills": jd_skills,
+        "project_analysis": project_analysis,
+        "experience_analysis": experience_analysis,
+    }
+
+
 def rank_resumes(
     job_description: str,
     jd_skills: list[str],
