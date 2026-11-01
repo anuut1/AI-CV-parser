@@ -23,6 +23,7 @@ Designed to make candidate screening transparent, auditable, and fairer for fres
   - [Backend Setup](#backend-setup)
   - [Frontend Setup](#frontend-setup)
 - [Evaluation & Weight Tuning](#evaluation--weight-tuning)
+- [Deployment (Vercel + Cloud Backend)](#deployment-vercel--cloud-backend)
 - [API Reference](#api-reference)
 - [Running Tests](#running-tests)
 - [License](#license)
@@ -248,6 +249,22 @@ Run Leave-One-JD-Out Cross-Validation (LOOCV) grid search and logistic regressio
 python evaluation/tune_weights.py
 ```
 Benchmark tables are automatically written to `evaluation/results.md`.
+
+---
+
+## Deployment (Vercel + Cloud Backend)
+
+Detailed instructions for deploying the React frontend on **Vercel** and the FastAPI backend on **Render**, **Hugging Face Spaces**, or **Railway** are documented in:
+👉 **[Deployment Guide](docs/deployment.md)**
+
+### Quick Summary
+1. **Frontend (Vercel)**:
+   - Root Directory: `Project/frontend`
+   - Framework Preset: `Vite`
+   - Environment Variable: `VITE_API_BASE_URL=https://<your-deployed-backend-url>`
+2. **Backend (Render / Hugging Face Spaces)**:
+   - Root Directory: `Project/backend`
+   - Deploy with the included `Dockerfile` or run `pip install -r requirements.txt`.
 
 ---
 
