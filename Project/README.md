@@ -1,63 +1,83 @@
-AI Resume Ranking & Explainable ATS System
-An AI-powered resume screening system that compares candidate resumes with a job description and ranks candidates using skill matching, semantic similarity, project relevance, and experience relevance.
+# Project Architecture & Overview
 
-The goal of this project is to improve traditional ATS screening by making the ranking process more explainable and fairer for students and freshers, especially when relevant projects can compensate for lower formal work experience.
+This directory contains the core source code for the **AI Resume Ranking & Explainable ATS** platform.
 
-Scoring Formula
-Final Score =
-0.55 * Skill Match Score
-+ 0.25 * Semantic Similarity Score
-+ 0.10 * Project Relevance Score
-+ 0.10 * Experience Relevance Score
-Score Meaning
-Skill Match Score: Measures direct overlap between JD skills and resume skills.
-Semantic Similarity Score: Measures meaning-level similarity between resume and JD using Sentence Transformers.
-Project Relevance Score: Checks whether student/fresher projects match the role.
-Experience Relevance Score: Compares required experience in the JD with detected resume experience.
+For the full system guide, benchmarking results, and architecture diagrams, please refer to the root [**README.md**](../README.md).
 
-Tech Stack:
-Layer	Technology
-Frontend	React, Vite, CSS
-Backend	FastAPI, Python
-AI/NLP	Sentence Transformers, Scikit-learn
-PDF Processing	pypdf
-API Format	Multipart form upload, JSON response
+---
 
-Open a terminal in the project root:
+## Directory Structure
 
+```
+Project/
+├── backend/                  # FastAPI Application & AI Scoring Engine
+│   ├── main.py               # REST API endpoints & CORS middleware
+│   ├── requirements.txt      # Python dependencies (FastAPI, Sentence-Transformers, Docx, PyPDF)
+│   ├── Dockerfile            # Container deployment specification (Render/Railway/HF Spaces)
+│   └── services/
+│       ├── candidate.py      # Candidate name & metadata extraction
+│       ├── extractor.py      # PDF, DOCX, DOC, and TXT parsing
+│       ├── fairness.py       # Demographic neutrality & bias audit reporting
+│       ├── scoring.py        # 4-pillar hybrid scoring engine & feedback generator
+│       └── skills.py         # Technical skills taxonomy & alias dictionary
+│
+├── frontend/                 # Modern React 18 + Vite SaaS UI
+│   ├── package.json          # Node scripts & dependencies (Lucide icons, React 18)
+│   ├── vite.config.js        # Vite build & plugin configuration
+│   ├── vercel.json           # Vercel SPA routing rewrite rules
+│   ├── index.html            # Web entry point & Inter / JetBrains Mono typography
+│   └── src/
+│       ├── App.jsx           # Main state management & orchestration
+│       ├── api.js            # API client with environment-aware endpoints
+│       ├── tokens.css        # CSS custom properties (colors, typography, radii, spacing)
+│       ├── styles.css        # Modern SaaS responsive component styles
+│       └── components/       # Componentized presentation layer
+│           ├── Header.jsx           # Slim navbar with brand & dark mode toggle
+│           ├── UploadPanel.jsx      # JD document upload & resume multi-dropzone
+│           ├── MetricsRow.jsx       # Top summary cards (Average score, Candidates, Top Pick)
+│           ├── RankingChart.jsx     # Visual ranking bars with color-coded score bands
+│           ├── CandidateCard.jsx    # Expandable candidate card with circular score gauge
+│           ├── ScoreBreakdown.jsx   # 4-pillar stacked progress bars & weight legends
+│           ├── ComparisonTable.jsx  # Side-by-side candidate comparison matrix
+│           └── BiasWarning.jsx      # Non-intrusive fairness alert banner
+│
+└── examples/                 # Sample job descriptions and resumes for testing
+    ├── fresher_jd.txt
+    ├── fresher_resume.txt
+    ├── sample_jd.txt
+    └── sample_resume.txt
+```
+
+---
+
+## Quick Start (Local Development)
+
+### 1. Backend
+```bash
 cd backend
 python -m venv .venv
-Activate the virtual environment on Windows:
-
+# Windows:
 .venv\Scripts\activate
-Install dependencies:
+# Linux/macOS:
+source .venv/bin/activate
 
 pip install -r requirements.txt
-Run the backend:
+uvicorn main:app --host 127.0.0.1 --port 8001 --reload
+```
+API: [http://127.0.0.1:8001](http://127.0.0.1:8001)  
+Swagger Docs: [http://127.0.0.1:8001/docs](http://127.0.0.1:8001/docs)
 
-uvicorn main:app --host 127.0.0.1 --port 8001
-Backend URL:
-
-http://127.0.0.1:8001
-API docs:
-
-http://127.0.0.1:8001/docs
-Frontend Setup
-Open another terminal in the project root:
-
+### 2. Frontend
+```bash
 cd frontend
 npm install
 npm run dev
-Frontend URL:
+```
+UI: [http://localhost:5173](http://localhost:5173)
 
-http://127.0.0.1:5173
+---
 
-Why This Project Is Useful
-Traditional ATS systems often reject freshers because they focus heavily on exact keywords or years of experience. This project adds:
-semantic matching
-project relevance
-explainable scoring
-manual review flags
-This makes the screening process more transparent and suitable for student/internship hiring.
-
-
+## Deployment
+- **Frontend**: One-click deployment to **Vercel** with root directory set to `Project/frontend`.
+- **Backend**: Containerized deployment to **Render**, **Hugging Face Spaces**, or **Railway** using the included `Dockerfile`.
+- See full instructions in [**docs/deployment.md**](../docs/deployment.md).
