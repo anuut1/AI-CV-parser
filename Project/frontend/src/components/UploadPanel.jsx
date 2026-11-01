@@ -7,8 +7,10 @@ import {
   Loader2,
   Sparkles,
   AlertCircle,
-  FileCheck
+  FileCheck,
+  FileUp
 } from "lucide-react";
+import { extractDocumentText } from "../api";
 
 export function UploadPanel({
   jobDescription,
@@ -22,7 +24,10 @@ export function UploadPanel({
   onClearAll
 }) {
   const [dragActive, setDragActive] = useState(false);
+  const [extractingJd, setExtractingJd] = useState(false);
+  const [jdUploadError, setJdUploadError] = useState("");
   const fileInputRef = useRef(null);
+  const jdFileInputRef = useRef(null);
 
   const charCount = jobDescription.length;
   const wordCount = jobDescription.trim()
@@ -56,13 +61,52 @@ export function UploadPanel({
     }
   }
 
+  async function handleJdFileChange(e) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setJdUploadError("");
+
+    const filename = file.name.toLowerCase();
+    if (filename.endsWith(".txt")) {
+      try {
+        const text = await file.text();
+        setJobDescription(text.trim());
+      } catch (err) {
+        setJdUploadError("Failed to read text from JD file.");
+      } finally {
+        e.target.value = "";
+      }
+      return;
+    }
+
+    if (filename.endsWith(".pdf") || filename.endsWith(".docx") || filename.endsWith(".doc")) {
+      setExtractingJd(true);
+      try {
+        const res = await extractDocumentText(file);
+        if (res.text) {
+          setJobDescription(res.text.trim());
+        } else {
+          setJdUploadError("No readable text found in the uploaded document.");
+        }
+      } catch (err) {
+        setJdUploadError(err.message || "Failed to extract text from document.");
+      } finally {
+        setExtractingJd(false);
+        e.target.value = "";
+      }
+    } else {
+      setJdUploadError("Unsupported format. Use .txt, .pdf, .docx, or .doc.");
+      e.target.value = "";
+    }
+  }
+
   return (
     <section className="upload-section" aria-labelledby="upload-heading">
       <div className="section-header">
         <div>
           <h2 id="upload-heading" className="section-title">Job & Candidate Intake</h2>
           <p className="section-desc">
-            Provide the target job description and candidate resumes to rank matches using our 4-pillar explainable ATS.
+            Provide the target job description and candidate resumes (PDF, Word DOCX/DOC, TXT) to rank matches using our 4-pillar explainable ATS.
           </p>
         </div>
         {(jobDescription || resumes.length > 0) && (
@@ -70,7 +114,7 @@ export function UploadPanel({
             type="button"
             className="btn-text-subtle"
             onClick={onClearAll}
-            disabled={loading}
+            disabled={loading || extractingJd}
           >
             Clear all
           </button>
@@ -86,7 +130,29 @@ export function UploadPanel({
                 <ClipboardList size={17} className="field-icon" />
                 <span>Job Description</span>
               </label>
-              <div className="count-badges">
+              <div className="header-actions-inline">
+                <button
+                  type="button"
+                  className="btn-upload-jd"
+                  onClick={() => jdFileInputRef.current?.click()}
+                  disabled={extractingJd || loading}
+                  title="Upload a JD document (.pdf, .docx, .doc, .txt)"
+                >
+                  {extractingJd ? (
+                    <Loader2 size={13} className="spin-icon" />
+                  ) : (
+                    <FileUp size={13} />
+                  )}
+                  <span>{extractingJd ? "Extracting..." : "Upload JD document"}</span>
+                </button>
+                <input
+                  ref={jdFileInputRef}
+                  type="file"
+                  accept=".pdf,.docx,.doc,.txt"
+                  className="hidden-file-input"
+                  onChange={handleJdFileChange}
+                  disabled={loading || extractingJd}
+                />
                 <span className="count-pill">{wordCount} words</span>
                 <span className="count-pill">{charCount} chars</span>
               </div>
@@ -97,14 +163,18 @@ export function UploadPanel({
               className="form-textarea"
               value={jobDescription}
               onChange={(e) => setJobDescription(e.target.value)}
-              placeholder="Paste job description, required skills, preferred qualifications, and experience expectations here..."
-              disabled={loading}
+              placeholder="Paste job description, required skills, and experience expectations here, or click 'Upload JD document' above..."
+              disabled={loading || extractingJd}
               rows={9}
             />
 
+            {jdUploadError && (
+              <p className="field-error-subtext">{jdUploadError}</p>
+            )}
+
             <div className="field-footer">
               <span className="helper-hint">
-                Include explicit skills (e.g. Python, SQL) and tenure requirements for best accuracy.
+                Supported for upload: PDF, Word (DOCX/DOC), TXT. Include explicit skills (e.g. Python, SQL) for best accuracy.
               </span>
             </div>
           </div>
@@ -117,7 +187,7 @@ export function UploadPanel({
                 <span>Candidate Resumes</span>
               </label>
               <span className="count-pill primary-pill">
-                {resumes.length} {resumes.length === 1 ? "resume" : "resumes"} attached
+                {resumes.length} {resumes.length === 1 ? "document" : "documents"} attached
               </span>
             </div>
 
@@ -136,7 +206,7 @@ export function UploadPanel({
                   fileInputRef.current?.click();
                 }
               }}
-              aria-label="Upload candidate resumes: drop files here or click to browse"
+              aria-label="Upload candidate resumes: drop documents here or click to browse"
             >
               <div className="dropzone-icon-wrap">
                 <Upload size={22} className="dropzone-icon" />
@@ -145,12 +215,14 @@ export function UploadPanel({
                 <p className="dropzone-primary">
                   <span className="browse-link">Click to upload</span> or drag and drop
                 </p>
-                <p className="dropzone-secondary">Supported formats: PDF, TXT (up to 10MB each)</p>
+                <p className="dropzone-secondary">
+                  Supported formats: PDF, DOCX, DOC, TXT (up to 10MB each)
+                </p>
               </div>
               <input
                 ref={fileInputRef}
                 type="file"
-                accept=".pdf,.txt"
+                accept=".pdf,.docx,.doc,.txt"
                 multiple
                 className="hidden-file-input"
                 onChange={handleFileChange}
@@ -202,7 +274,7 @@ export function UploadPanel({
             {resumes.length > 0 && jobDescription.trim() ? (
               <span>Ready to evaluate {resumes.length} candidates against role criteria.</span>
             ) : (
-              <span>Paste a job description and attach at least one resume to run ranking.</span>
+              <span>Provide a job description and attach at least one resume (PDF, Word, or TXT).</span>
             )}
           </div>
           <button

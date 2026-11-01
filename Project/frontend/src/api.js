@@ -19,3 +19,19 @@ export async function rankResumes(jobDescription, resumes) {
 
   return response.json();
 }
+
+export async function extractDocumentText(file) {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(`${API_BASE_URL}/extract-text`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to extract text from document");
+  }
+
+  return response.json();
+}

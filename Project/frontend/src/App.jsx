@@ -45,10 +45,10 @@ function App() {
   // File Handlers
   function addFiles(fileList) {
     const nextFiles = Array.from(fileList).filter((file) =>
-      /\.(pdf|txt)$/i.test(file.name)
+      /\.(pdf|docx|doc|txt)$/i.test(file.name)
     );
     if (nextFiles.length === 0) {
-      setError("Please select valid .pdf or .txt resume documents.");
+      setError("Please select valid resume documents (.pdf, .docx, .doc, or .txt).");
       return;
     }
     setError("");

@@ -26,6 +26,12 @@ def health_check():
     return {"status": "ok", "message": "Resume ranking API is running"}
 
 
+@app.post("/extract-text")
+async def extract_document_text(file: UploadFile = File(...)):
+    text = await extract_text_from_upload(file)
+    return {"filename": file.filename, "text": text}
+
+
 @app.post("/rank-resumes")
 async def rank_uploaded_resumes(
     job_description: str = Form(...),
